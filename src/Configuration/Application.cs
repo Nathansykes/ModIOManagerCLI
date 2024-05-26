@@ -1,7 +1,6 @@
 ﻿using Cocona;
 using Microsoft.Extensions.Configuration;
 using ModIOManagerCLI.Commands;
-using System.Reflection;
 
 namespace ModIOManagerCLI.Configuration;
 public static class Application

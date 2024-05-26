@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-
-namespace ModIOManagerCLI.Settings;
+﻿namespace ModIOManagerCLI.Settings;
 public class UserData
 {
     private static UserData? _instance;

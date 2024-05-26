@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Text.Json;
-
-namespace ModIOManagerCLI.Settings;
+﻿namespace ModIOManagerCLI.Settings;
 public class Config
 {
     private static Config? _instance;

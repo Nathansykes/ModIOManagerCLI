@@ -1,8 +1,7 @@
-﻿using ModIOManagerCLI.Settings;
-namespace ModIOManagerCLI.Commands;
+﻿namespace ModIOManagerCLI.Commands;
 
 public class CommandBase
 {
-   
+
 
 }
