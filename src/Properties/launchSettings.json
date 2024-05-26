@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "ModIOManagerCLI": {
-      "commandName": "Project",
-      "commandLineArgs": "test-auth"
-    }
-  }
-}
