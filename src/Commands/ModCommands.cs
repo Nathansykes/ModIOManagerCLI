@@ -1,18 +1,34 @@
 ﻿using Cocona;
 using ModIOManagerCLI.Services;
+using ModIOManagerCLI.Settings;
 
 namespace ModIOManagerCLI.Commands;
-public class ModCommands(ModService modService) : CommandBase
+public class ModCommands(ModIOClient client) : CommandBase
 {
-    private readonly ModService _modService = modService;
+    private readonly ModIOClient _client = client;
 
-    [Command("mods")]
-    public async Task Mods([Option]int? gameid = null)
+    [Command("list", Description = "Get subscribed mods")]
+    public async Task ListMods([Option("game", ['g'], Description = "Filter by a specific game")]string? game = null)
     {
-        var mods = await _modService.GetSubscribedMods(gameid);
+        SupportedGame? supportedGame = null;
+        if (!string.IsNullOrWhiteSpace(game))
+        {
+            supportedGame = SupportedGame.Find(game);
+            if (supportedGame is null)
+                return;
+            Console.WriteLine($"Getting mods for game {supportedGame.Name}");
+        }
+
+        var mods = await _client.GetSubscribedMods(supportedGame?.Id);
         foreach (var mod in mods)
         {
             Console.WriteLine(mod.Name);
         }
     }
+
+    //[Command("install", Description = "Installs all subscribed mods")]
+    //public async Task ListMods([Option("game", ['g'], Description = "Filter by a specific game")] string? game = null)
+    //{
+
+    //}
 }

@@ -1,12 +1,22 @@
 ﻿using Cocona;
+using ModIOManagerCLI.Commands;
 using ModIOManagerCLI.Configuration;
 
-var builder = CoconaApp.CreateBuilder();
 
-builder.Services.ConfigureServices(builder.Configuration);
+[HasSubCommands(typeof(ConfigCommands), Description = "Config commands")]
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        var builder = CoconaApp.CreateBuilder();
 
-var app = builder.Build();
+        builder.Services.ConfigureServices(builder.Configuration);
 
-app.ConfigureApp(builder.Configuration);
+        var app = builder.Build();
 
-app.Run();
+        app.ConfigureApp(builder.Configuration);
+
+        app.Run();
+
+    }
+}

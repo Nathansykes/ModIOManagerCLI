@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="cocona" Version="2.2.0" />
+    <PackageReference Include="FuzzySharp" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
   </ItemGroup>
 

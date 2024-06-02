@@ -1,16 +1,21 @@
 ﻿using ModIOManagerCLI.API;
 using ModIOManagerCLI.Utils;
+using System.Net.Http;
 using System.Text.Json;
 
 namespace ModIOManagerCLI.Services;
-public class ModService(IHttpClientFactory httpClientFactory)
+public class ModIOClient(HttpClient client)
 {
-    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
+    private readonly HttpClient _client = client;
+
+    public async Task<bool> TestConnection()
+    {
+        var response = await _client.GetAsync("me");
+        return response.IsSuccessStatusCode;
+    }
 
     public async Task<List<ModObject>> GetSubscribedMods(int? gameId)
     {
-        Console.WriteLine($"Getting mods for game id {gameId}");
-        var client = _httpClientFactory.CreateClient(NamedHttpClients.ModIO);
         var path = new UrlQueryParameterDictionary("me/subscribed");
         if (gameId.HasValue)
             path.Add("game_id", gameId);
@@ -25,7 +30,7 @@ public class ModService(IHttpClientFactory httpClientFactory)
             path["_offset"] = offset;
             path["_limit"] = limit;
 
-            var response = await client.GetAsync(path.ToString());
+            var response = await _client.GetAsync(path.ToString());
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();

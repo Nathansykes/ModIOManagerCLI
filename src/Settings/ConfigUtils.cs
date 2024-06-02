@@ -21,7 +21,7 @@ public static class ConfigUtils
             catch
             {
                 Console.WriteLine("Could not read config file");
-                throw;
+                throw new Cocona.CommandExitedException(1);
             }
         }
         else
@@ -34,11 +34,8 @@ public static class ConfigUtils
 
     public static void Save<T>(T model, string filePath)
     {
-        if (!File.Exists(filePath))
-            File.Create(filePath).Close();
-        using var sw = new StreamWriter(filePath, true);
         var content = JsonSerializer.Serialize(model, _jsonWriteOptions);
-        sw.Write(content);
+        File.WriteAllText(filePath, content);
     }
 
     private static readonly JsonSerializerOptions _jsonWriteOptions = new() { WriteIndented = true };
