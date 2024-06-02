@@ -1,5 +1,5 @@
 ﻿using Cocona;
-using ModIOManagerCLI.Services;
+using ModIOManagerCLI.API;
 using ModIOManagerCLI.Settings;
 
 namespace ModIOManagerCLI.Commands;

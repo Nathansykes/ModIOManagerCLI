@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ModIOManagerCLI.Services;
+using ModIOManagerCLI.API;
 using ModIOManagerCLI.Settings;
 
 namespace ModIOManagerCLI.Configuration;

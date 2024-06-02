@@ -1,9 +1,8 @@
-﻿using ModIOManagerCLI.API;
-using ModIOManagerCLI.Utils;
+﻿using ModIOManagerCLI.Utils;
 using System.Net.Http;
 using System.Text.Json;
 
-namespace ModIOManagerCLI.Services;
+namespace ModIOManagerCLI.API;
 public class ModIOClient(HttpClient client)
 {
     private readonly HttpClient _client = client;
